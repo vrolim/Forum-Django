@@ -1,4 +1,4 @@
-# smart-lms
+# SmartForum
 
 Para configurar seu ambiente Python+Django, siga o seguinte tutorial:
 - (http://pythonclub.com.br/instalacao-python-django-windows.html)
