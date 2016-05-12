@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %} 
+
+<div class="row" style="margin-top:5%;">
+	<div class="large-8 columns" style="border-right: 1px solid #E3E5E8;">
+		<form method="post">
+			{% csrf_token %}
+			{% ifequal tipo 'disciplina' %}
+				<h4>Nova Disciplina</h4>
+			{% endifequal %}
+			{% ifequal tipo 'turma' %}
+				<h4>Nova Turma</h4>
+			{% endifequal %}
+			{% ifequal tipo 'forum' %}
+				<h4>Novo Fórum</h4>
+			{% endifequal %}
+			{% ifequal tipo 'curso' %}
+				<h4>Novo Curso</h4>
+			{% endifequal %}			
+			{{form}}
+			<input class="button large float-right" type="submit" value="Criar">
+		</form>
+	</div>
+	<div class="large-4 columns">
+		<aside>
+			{% include "menu-lateral.html" %}
+		</aside>
+	</div>
+</div>
+{% endblock %}

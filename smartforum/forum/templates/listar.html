@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %} 
+<div class="row" style="margin-top:5%;">
+	{% if messages %}
+		{% for message in messages %}
+			<div class="callout {{message.tags}}">
+				{{message}}
+			</div>
+		{% endfor %}
+	{% endif %}
+	<div class="callout">
+		<form method="post" action='/forum/listar/busca'>
+			{% csrf_token %}
+			<div class="row collapse">
+				<div class="large-8 small-9 columns">
+					<input type="text" name="termo" placeholder="Intituição, curso....">
+				</div>
+				<div class="large-4 small-3 columns">
+					<input type="submit" class="button" value="Buscar">
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="large-8 columns" style="border-right: 1px solid #E3E5E8;">
+        <p> Procurando o termo: "{{termo}}"</p>
+		{% if instituicao %}
+			<div class="callout primary">
+				<h4>Instituições encontradas</h4>
+			</div>
+			{% for i in instituicao %}
+				<h5 class="float-left">{{i}}</h5> <a class="button float-right" href="/forum/visualizacao/instituicao/{{i.id}}">Visualizar</a>
+				<hr>
+			{% endfor %}
+		{% endif %}
+
+		{% if curso %}
+			<div class="callout primary">
+				<h4>Cursos encontrados</h4>
+			</div>		
+			{% for c in curso %}
+				<h5 class="float-left">{{c}}</h5> <a class="button float-right" href="/forum/visualizacao/curso/{{c.id}}">Visualizar</a>
+				<hr>
+			{% endfor %}		
+		{% endif %}
+
+		{% if disciplina %}
+			<div class="callout primary">
+				<h4>Disciplinas encontradas</h4>
+			</div>		
+			{% for d in disciplina %}
+				<h5 class="float-left">{{d}}</h5> <a class="button float-right" href="/forum/visualizacao/disciplina/{{d.id}}">Visualizar</a>
+				<hr>
+			{% endfor %}		
+		{% endif %}
+
+		{% if turma %}
+			<div class="callout primary">
+				<h4>Turmas encontradas</h4>
+			</div>		
+			{% for t in turma %}
+				<h5 class="float-left">{{t}}</h5> <a class="button float-right" href="/forum/visualizacao/turma/{{t.id}}">Visualizar</a>
+				<hr>
+			{% endfor %}		
+		{% endif %}
+
+		{% if forum %}
+			<div class="callout primary">
+				<h4>Fóruns encontrados</h4>
+			</div>
+			{% for f in forum %}
+				<h5 class="float-left">{{f}}</h5> <a class="button float-right" href="/forum/insteracao/{{f.id}}">Entrar</a>
+				<hr>			
+			{% endfor %}		
+		{% endif %}							
+	</div>
+	<div class="large-4 columns">
+		<aside>
+			{% include "menu-lateral.html" %}
+		</aside>
+	</div>
+</div>
+{% endblock %}

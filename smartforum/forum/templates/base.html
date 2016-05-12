@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>SmartForum</title>
+        <link type="text/css" rel="stylesheet" href="{% static 'css/foundation.min.css' %}"/>
+        <link type="text/css" rel="stylesheet" href="{% static 'css/foundation-icons.css' %}"/>
+        <link type="text/css" rel="stylesheet" href="{% static 'css/app.css' %}"/>
+
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+    </head>
+    <body>
+        <div class="callout">
+            {% if logado %}
+                    <ul class="menu align-right">
+                        <a href="/forum/home"><img src="{% static 'img/logo.png' %}" width="15%"></a>
+                        <li><a class="button alert large" href="/forum/sair">Sair</a></li>
+                        <li><a class="button large" href="/forum/painel">Minha Conta</a></li>
+                        <li><a class="button secondary large" href="/forum/home">Principal</a></li>
+                    </ul>
+            {% else %}
+                <ul class="menu align-right" style="border:0px solid;">
+                    <a href="/"><img src="{% static 'img/logo.png' %}" width="15%"></a>     
+                    <li><a class="button large" href="/forum/entrar">Entrar</a></li>
+                    <li><a class="button warning large" href="/forum/cadastro">Cadastrar</a></li>
+                    <li><a class="button alert large" href="#">Contato</a></li>
+                    <li><a class="button secondary large" href="#">Planos</a></li>
+                    <li><a class="button black large" href="#">Quem Somos</a></li>
+                </ul>
+            {% endif %}     
+        </div>
+        {% block content %}
+        {% endblock %}    
+        <script type="text/javascript" src="{% static 'js/foundation.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
+        <script>
+          $(document).foundation();
+        </script>    
+    </body>
+</html>

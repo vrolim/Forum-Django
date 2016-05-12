@@ -1,0 +1,178 @@
+			<div class="row column">
+				{% ifequal grupo 'Aluno' %}
+					<div class="callout">
+						<div class="callout primary">
+							<h5>Minhas Turmas</h5>
+						</div>
+						{% if turmas %}
+							<ul class="menu vertical">
+								{% for turma in turmas %}
+									<li><a href="/forum/visualizacao/turma/{{turma.id}}">{{turma}}</a></li>
+								{% endfor %}
+							</ul>
+						{% else %}
+							<b>Você não está em participando de nenhum fórum no momento.</b>
+							<p>Clique <a>aqui</a> Para achar suas turmas!</p>
+						{% endif %}
+					</div>
+					<div class="callout">
+						<div class="callout secondary">
+							<h5>Meu calendário</h5>
+						</div>
+						<p><a href="#">Ver meu calemdário</a></p>
+					</div>	
+					<div class="callout">
+						<div class="callout secondary">
+							<h5>Notificações</h5>
+						</div>
+						{% if atividades %}
+							<ul class="menu vertical">
+								{% for atividade in atividades %}
+									<li><a href="/forum/painel">{{atividade}}</a></li>
+								{% endfor %}
+							</ul>
+						{% else %}
+							<p>Você não possui notificações no momento.</p>
+						{% endif %}
+					</div>
+				{% endifequal %}		
+				{% ifequal grupo 'Professor' %}
+					<div class="callout">
+						<div class="callout secondary">
+							<h5>Ações</h5>
+						</div>
+						<ul class="menu vertical float-center">
+							<li><a class="button secondary" href="/forum/novo/disciplina">+ Nova Disciplina</a></li>
+							<li><a class="button secondary" href="/forum/novo/turma">+ Nova Turma</a></li>
+							<li><a class="button secondary" href="/forum/novo/forum">+ Novo Fórum</a></li>
+						</ul>
+					</div>
+					<br>
+					<div class="callout">
+						<div class="callout primary">
+							<h5>Minhas Turmas</h5>
+						</div>
+						{% if turmas %}
+							<ul class="menu vertical">
+								{% for turma in turmas %}
+									<li><a href="/forum/visualizacao/turma/{{turma.id}}">{{turma}}</a></li>
+								{% endfor %}
+							</ul>
+						{% else %}
+							<b>Você não está em participando de nenhum fórum no momento.</b>
+							<p>Clique <a>aqui</a> Para achar suas turmas!</p>
+						{% endif %}
+					</div>
+					<div class="callout">
+						<div class="callout secondary">
+							<h5>Meu calendário</h5>
+						</div>
+						<p><a href="#">Ver meu calemdário</a></p>
+					</div>	
+					<div class="callout">
+						<div class="callout secondary">
+							<h5>Notificações</h5>
+						</div>
+						{% if atividades %}
+							<ul class="menu vertical">
+								{% for atividade in atividades %}
+									<li><a href="/forum/painel">{{atividade}}</a></li>
+								{% endfor %}
+							</ul>
+						{% else %}
+							<p>Você não possui notificações no momento.</p>
+						{% endif %}
+					</div>
+				{% endifequal %}	
+				{% ifequal grupo 'Tutor' %}
+					<div class="callout">
+						<div class="callout secondary">
+							<h5>Ações</h5>
+						</div>
+						<ul class="menu vertical">
+							<li><a class="button secondary" href="/forum/novo/turma">+ Nova Turma</a></li>
+							<li><a class="button secondary" href="/forum/novo/forum">+ Novo Fórum</a></li>
+						</ul>
+					</div>
+					<br>
+					<div class="callout">
+						<div class="callout primary">
+							<h5>Minhas Turmas</h5>
+						</div>
+						{% if turmas %}
+							<ul class="menu vertical">
+								{% for turma in turmas %}
+									<li><a href="/forum/visualizacao/turma/{{turma.id}}">{{turma}}</a></li>
+								{% endfor %}
+							</ul>
+						{% else %}
+							<b>Você não está em participando de nenhum fórum no momento.</b>
+							<p>Clique <a>aqui</a> Para achar suas turmas!</p>
+						{% endif %}
+					</div>
+					<div class="callout">
+						<div class="callout secondary">
+							<h5>Meu calendário</h5>
+						</div>
+						<p><a href="#">Ver meu calemdário</a></p>
+					</div>	
+					<div class="callout">
+						<div class="callout secondary">
+							<h5>Notificações</h5>
+						</div>
+						<ul class="menu vertical">
+							<li><a href="#">Lorem ipsum dolor sit amet</a></li>
+							<li><a href="#">Lorem ipsum dolor sit amet</a></li>
+							<li><a href="#">Lorem ipsum dolor sit amet</a></li>
+							<li><a href="#">Lorem ipsum dolor sit amet</a></li>
+						</ul>
+					</div>
+				{% endifequal %}	
+				{% ifequal grupo 'Admin' %}
+					<div class="callout">
+						<div class="callout secondary">
+							<h5>Ações</h5>
+						</div>
+						<ul class="menu vertical">
+							<li><a class="button secondary" href="/forum/novo/curso">+ Nova Curso</a></li>
+							<li><a class="button secondary" href="/forum/novo/disciplina">+ Nova Disciplina</a></li>
+							<li><a class="button secondary" href="/forum/novo/turma">+ Nova Turma</a></li>
+							<li><a class="button secondary" href="/forum/novo/forum">+ Novo Fórum</a></li>
+						</ul>
+					</div>
+					<br>
+					<div class="callout">
+						<div class="callout primary">
+							<h5>Minhas Turmas</h5>
+						</div>
+						{% if turmas %}
+							<ul class="menu vertical">
+								{% for turma in turmas %}
+									<li><a href="/forum/visualizacao/turma/{{turma.id}}">{{turma}}</a></li>
+								{% endfor %}
+							</ul>
+						{% else %}
+							<b>Você não está em participando de nenhum fórum no momento.</b>
+							<p>Clique <a>aqui</a> Para achar suas turmas!</p>
+						{% endif %}
+					</div>
+					<div class="callout">
+						<div class="callout secondary">
+							<h5>Meu calendário</h5>
+						</div>
+						<p><a href="#">Ver meu calemdário</a></p>
+					</div>	
+					<div class="callout">
+						<div class="callout secondary">
+							<h5>Notificações</h5>
+						</div>
+						{% if atividades %}
+							<ul class="menu vertical">
+								{% for atividade in atividades %}
+									<li><a href="/forum/painel">{{atividade}}</a></li>
+								{% endfor %}
+							</ul>
+						{% endif %}
+					</div>
+				{% endifequal %}				
+			</div>

@@ -1,0 +1,8 @@
+build/
+migrations/
+db.sqlite3
+*.pyc
+*.log
+*.pot
+*.pyc
+__pycache__/

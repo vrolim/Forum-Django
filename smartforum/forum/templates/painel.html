@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %} 
+
+<div class="row" style="margin-top:5%;">
+    {% if messages %}
+		{% for message in messages %}
+			<div class="callout {{message.tags}}">
+				{{message}}
+			</div>
+		{% endfor %}
+	{% endif %}
+
+	<div class="large-8 columns">
+		<div class="row callout">
+			<div class="large-2 columns">
+				<p><img class="thumbnail" src="/media/{{usuario.foto}}" alt="{{usuario}} thumb" alt="article preview image"></p>
+			</div>
+			<div class="large-10 columns">
+				<h5>{{user.first_name}} {{user.last_name}}</h5>
+				<hr>
+				<label>Sobre mim:</label>
+				<p>{{usuario.descricao}}</p>
+			</div>
+			{% if turmas %}
+				<hr>
+				<div class="large-12 columns">
+					<h5>Minhas turmas</h5>
+					<div class="callout">					
+						{% for turma in turmas %}
+							<a href="/forum/visualizacao/turma/{{turma.id}}">
+								<p>{{turma}}</p>
+							</a>
+						{% endfor %}
+					</div>
+				</div>
+			{% endif %}
+			{% if atividades %}
+				<hr>
+				<div class="large-12 columns">
+					<h5>Solicitações:</h5>
+					<div class="large-12 columns callout">
+						{% for solicitacao in atividades %}
+							<span class="large-8 columns float-left">{{solicitacao}}</span><div class="large-4 columns float-right"><a class="button" href="/forum/solicitacao/{{solicitacao.tipo_id}}/1">Aceitar</a> &nbsp; <a class="button alert" href="/forum/solicitacao/{{solicitacao.tipo_id}}/0">Rejeitar</a></div>						
+						{% endfor %}
+					</div>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+	<div class="large-4 columns">
+		<aside>
+			{% include "menu-lateral.html" %}
+		</aside>
+	</div>	
+
+</div>
+{% endblock %}

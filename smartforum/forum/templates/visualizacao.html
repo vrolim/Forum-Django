@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %} 
+
+<div class="row" style="margin-top:2%;">
+    {% if messages %}
+		{% for message in messages %}
+			<div class="callout {{message.tags}}">
+				{{message}}
+			</div>
+		{% endfor %}
+	{% endif %}
+	<div class="callout">
+		{% if instituicao %}
+			<h2>{{instituicao}}</h2><hr>
+			<label class="label warning">Endereço</label>&nbsp;{{instituicao.endereco}}<a class="button large float-right" href="/forum/add/instituicao/{{instituicao.id}}">+ Solicitar matrícula</a><br>
+			<label class="label success">Telefone</label>&nbsp;{{instituicao.telefone}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="label info">Email</label>&nbsp;{{instituicao.email}}
+					
+		{% endif %}
+
+		{% if curso %}
+			<h2>{{curso.nome}}</h2><br>
+			<label class="label warning">Código do MEC</label>&nbsp;{{curso.codigo_mec}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="label info">Instituicao</label>&nbsp;{{curso.instituicao}}<a class="button large float-right" href="/forum/add/curso/{{curso.id}}">+ Solicitar matrícula</a>
+			
+		{% endif %}
+
+		{% if disciplina %}
+			<h2>{{disciplina.nome}}</h2><br>
+			<label class="label warning">Código</label>&nbsp;{{disciplina.codigo}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="label info">Curso</label>&nbsp;{{disciplina.curso}}<a class="button large float-right" href="/forum/add/disciplina/{{disciplina.id}}">+ Solicitar matrícula</a><br>	
+		{% endif %}
+
+		{% if turma%}
+			<h2>{{turma.nome}}</h2><br>
+			<label class="label warning">Código</label>&nbsp;{{turma.codigo}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="label info">Curso</label>&nbsp;{{turma.disciplina}}<a class="button large float-right" href="/forum/add/turma/{{turma.id}}">+ Solicitar matrícula</a><br>
+		{% endif %}
+	</div>
+	<div class="large-8 columns" style="border-right: 1px solid #E3E5E8;">
+		{% if instituicao %}
+			<h3>Cursos:</h3>
+			{% for curso in cursos %}
+				<a href="/forum/visualizacao/curso/{{curso.id}}">
+					<div class="callout">
+						<h4>{{curso}}</h4>
+					</div>
+				</a>
+			{% endfor %}
+		{% endif %}
+
+		{% if curso %}
+			<h3>Disciplinas:</h3>
+			{% for disciplina in disciplinas %}
+				<a href="/forum/visualizacao/disciplina/{{disciplina.id}}">
+					<div class="callout">
+						<h4>{{disciplina}}</h4>
+					</div>
+				</a>
+			{% endfor %}
+		{% endif %}
+
+		{% if disciplina %}
+			{% for turma in turmass %}
+				<a href="/forum/visualizacao/turma/{{turma.id}}">
+					<div class="callout">
+						<h4>{{turma}}</h4>
+					</div>
+				</a>		
+			{% endfor %}
+		{% endif %}
+
+		{% if turma%}
+			<ul class="tabs" data-tabs id="example-tabs">
+			  <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Foruns</a></li>
+			  <li class="tabs-title"><a href="#panel2">Exercícios</a></li>
+			  <li class="tabs-title"><a href="#panel3">Cronograma</a></li>
+			</ul>
+			<div class="tabs-content" data-tabs-content="example-tabs">
+			  <div class="tabs-panel is-active" id="panel1">
+				<ul class="accordion" data-accordion role="tablist" data-allow-all-closed="true">			  	
+		  			{% for forum in foruns %}
+			  			<li class="accordion-item">	
+						    <a href="#panel{{forloop.counter}}d" role="tab" class="accordion-title" id="panel{{forloop.counter}}d-heading" aria-controls="panel{{forloop.counter}}d"><h3>{{forum.titulo}}</h3></a>
+						    <div id="panel{{forloop.counter}}d" class="accordion-content" role="tabpanel" data-tab-content aria-labelledby="panel{{forloop.counter}}d-heading">
+	      						<h5><a href="/forum/interacao/{{forum.id}}">{{forum.titulo}}</a></h5>
+								<p>
+									<span><i class="fi-torso"> By {{forum.criador}} &nbsp;&nbsp;</i></span>
+									<span><i class="fi-calendar"> {{forum.data_criacao | date:"M d, Y"}} &nbsp;&nbsp;</i></span>
+									<span><i class="fi-comments"> X comments</i></span>
+								</p>
+								<p>{{forum.descricao}}</p>
+						    </div>
+						</li> 
+				    {% endfor %}
+				</ul>	
+			  </div>
+			  <div class="tabs-panel" id="panel2">
+			    <p>2</p>
+			  </div>
+			  <div class="tabs-panel" id="panel3">
+			    <p>3</p>
+			  </div>			  
+			</div>
+		{% endif %}
+
+	</div>
+	<div class="large-4 columns">
+		<aside>
+			{% include "menu-lateral.html" %}
+		</aside>
+	</div>
+</div>
+{% endblock %}

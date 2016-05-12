@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %} 
+
+<div class="row" style="margin-top:5%;">
+	<div class="callout">
+		<form method="post" action='/forum/listar/'>
+			{% csrf_token %}
+			<div class="row collapse">
+				<div class="large-8 small-9 columns">
+					<input type="text" name="termo" placeholder="Intituição, curso....">
+				</div>
+				<div class="large-4 small-3 columns">
+					<input type="submit" class="button" value="Buscar">
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="large-8 columns" style="border-right: 1px solid #E3E5E8;">
+		<h4>{{forum}}</h4>
+		<hr>
+		{% if posts %}
+			{% for post in posts %}
+				<div class="callout secondary">
+					by {{post.autor.user.username}} - {{post.data_post}}
+					<hr>
+					<div class="callout">
+						{{post.texto}}
+					</div>
+				</div>
+				<br>
+			{% endfor %}
+		{% else %}
+			<h5>Seja o primeiro a postar</h5>
+		{% endif %}
+		<form method="post" style="margin-top:5%;">
+			{% csrf_token %}
+			{{form.texto}}	
+			<input type="submit" class="button float-right" value="Postar">	
+		</form>
+	</div>
+	<div class="large-4 columns">
+		<aside>
+			{% include "menu-lateral.html" %}
+		</aside>
+	</div>
+</div>
+{% endblock %}

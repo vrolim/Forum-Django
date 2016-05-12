@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %} 
+
+<div class="row" style="margin-top:5%;">
+    {% if messages %}
+		{% for message in messages %}
+			<div class="callout {{message.tags}}">
+				{{message}}
+			</div>
+		{% endfor %}
+	{% endif %}
+	<div class="callout">
+		<form method="post" action='/forum/listar/busca'>
+			{% csrf_token %}
+			<div class="row collapse">
+				<div class="large-8 small-9 columns">
+					<input type="text" name="termo" placeholder="Intituição, curso....">
+				</div>
+				<div class="large-4 small-3 columns">
+					<input type="submit" class="button" value="Buscar">
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="large-8 columns" style="border-right: 1px solid #E3E5E8;">
+		<article>
+			<div class="row">
+				<div class="large-12 columns">
+					<div class="callout text-left">
+						<h4>Meus fóruns</h4>
+					</div>
+							{% if not instituicoes %}
+							    	<h5>Você não está matriculado em nenhuma instituição de ensino!</h5>
+									<p>Você pode buscar instituições clicando <a href='/forum/listar/instituicao'>aqui</a>!</p>								
+							{% else %}
+								{% if not cursos %}
+							    	<h5>Você não está matriculado em nenhum curso!</h5>
+									<p>Você pode buscar cursos clicando <a href='/forum/listar/curso'>aqui</a>!</p>								
+								{% else %}
+									{% if not disciplinas %}
+										<h5>Você não está matriculado em nenhuma disciplina!</h5>
+										<p>Você pode buscar disciplinas clicando <a href='/forum/listar/disciplina'>aqui</a>!</p>								
+									{% else %}
+										{% if not turmas %}
+											<h5>Você não está matriculado em nenhuma turma!</h5>
+											<p>Você pode buscar turmas clicando <a href='/forum/listar/turma'>aqui</a>!</p>								
+										{% else %}									
+									  		{% if foruns %}
+												<ul class="accordion" data-accordion role="tablist" data-allow-all-closed="true">			  	
+										  			{% for forum in foruns %}
+											  			<li class="accordion-item">	
+														    <a href="#panel{{forloop.counter}}d" role="tab" class="accordion-title" id="panel{{forloop.counter}}d-heading" aria-controls="panel{{forloop.counter}}d"><h3>{{forum.titulo}}</h3></a>
+														    <div id="panel{{forloop.counter}}d" class="accordion-content" role="tabpanel" data-tab-content aria-labelledby="panel{{forloop.counter}}d-heading">
+									      						<h5><a href="/forum/interacao/{{forum.id}}">{{forum.titulo}}</a></h5>
+																<p>
+																	<span><i class="fi-torso"> By {{forum.criador}} &nbsp;&nbsp;</i></span>
+																	<span><i class="fi-calendar"> {{forum.data_criacao | date:"M d, Y"}} &nbsp;&nbsp;</i></span>
+																	<span><i class="fi-comments"> X comments</i></span>
+																</p>
+																<p>{{forum.descricao}}</p>
+														    </div>
+														</li> 
+												    {% endfor %}
+												</ul>		    
+										    {% else %}
+										    	<h5>Você não está participando de nenhum fórum no momento.</h5>
+												<p>Você pode buscar seus fóruns clicando <a href='/forum/listar/forum'>aqui</a>!</p>
+											{% endif %}
+										{% endif %}
+									{% endif %}
+								{% endif %}
+						    {% endif %}
+
+
+				</div>
+			</div>
+			{% if foruns %}
+				<hr>
+				<ul class="pagination" role="navigation" aria-label="Pagination">
+					<li class="disabled">Previous <span class="show-for-sr">page</span></li>
+					<li class="current"><span class="show-for-sr">You're on page</span> 1</li>
+					<li><a href="#" aria-label="Page 2">2</a></li>
+					<li><a href="#" aria-label="Page 3">3</a></li>
+					<li><a href="#" aria-label="Page 4">4</a></li>
+					<li><a href="#" aria-label="Next page">Next <span class="show-for-sr">page</span></a></li>
+				</ul>
+			{% endif %}
+		</article>
+	</div>
+	<div class="large-4 columns">
+		<aside>
+			{% include "menu-lateral.html" %}
+		</aside>
+	</div>
+</div>
+{% endblock %}

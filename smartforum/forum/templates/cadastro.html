@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %} 
+	<div class="row" style="margin-top: 3%;">
+		<h3>Cadastro</h3>
+		<hr>
+		<form method="post">
+			{% csrf_token %}
+			<div class="large-6 columns" style="border-right:1px solid #A3A3A3">
+				{{form}}
+			</div>
+			<div class="large-6 columns">
+				{{form_profile}}
+			</div>
+			<input style="margin-top: 3%;" type="submit" class="button large float-right" value="Cadastrar">
+		</form>
+	</div>
+
+{% endblock %}
